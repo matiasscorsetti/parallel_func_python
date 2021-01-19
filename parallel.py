@@ -28,16 +28,13 @@ def run_in_parallel(function, object_list, kwargs=None, cpus=-1, ordered=False):
     if cpus==-1:
         cpus = cpu_count()
     fun_partial = partial(function, **kwargs)
-
-    if ordered == True:
-        with get_context("spawn").Pool(processes=cpus) as pool:
+    
+    with get_context("spawn").Pool(processes=cpus) as pool:
+        if ordered == True:
             result = pool.imap(fun_partial, object_list)
-            pool.close()
-            pool.join()
-    else:
-        with get_context("spawn").Pool(processes=cpus) as pool:
+        else:
             result = pool.imap_unordered(fun_partial, object_list)
-            pool.close()
-            pool.join()
+        pool.close()
+        pool.join()
 
     return result
