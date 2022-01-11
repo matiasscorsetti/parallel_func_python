@@ -2,7 +2,7 @@ from functools import partial
 from multiprocessing import get_context, cpu_count
 
 
-def run_in_parallel(function, object_list, kwargs=None, cpus=-1, ordered=False):
+def run_in_parallel(function, object_list, kwargs={}, cpus=-1, ordered=False):
     '''
     Function to parallelize the application of processes on a list of objects
 
