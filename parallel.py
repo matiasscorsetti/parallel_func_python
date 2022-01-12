@@ -8,14 +8,14 @@ def run_in_parallel(function, object_list, kwargs={}, cpus=-1, ordered=False):
 
     Example:
 
-        def my_function(constant, optional=1):
+        def my_function(var, param=1):
 
-            a = constant ** (2 * optional)
+            a = var ** (2 * param)
 
             return a
 
         my_object = [4, 4, 4, 4, 8, 8, 8, 8]
-        kwargs={'optional': 100000000}
+        kwargs={'param': 1000}
         cpus=4
 
         results = run_in_parallel(my_function, my_object, kwargs=kwargs, cpus=cpus)
